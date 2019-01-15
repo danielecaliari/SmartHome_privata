@@ -11,7 +11,7 @@ import java.util.Map;
 public class SmartHome {
 
 	/*Per ora ci serve solo la collezione di Device Descriptor*/
-	List<DeviceDescriptor> devDesc;
+	DescriptorsCollection descriptorsCollection;
 	Map<AbstractId,Device> devices;
 
 	
@@ -20,7 +20,7 @@ public class SmartHome {
 
 	//Il Costruttore è privato per il singleton
 	private SmartHome(){
-		this.devDesc = new ArrayList<DeviceDescriptor>();
+		this.descriptorsCollection = new DescriptorsCollection();
 		this.devices = new HashMap<AbstractId, Device>();
 	};
 
@@ -29,11 +29,11 @@ public class SmartHome {
 		return INSTANCE;
 	}
 
-	public List<DeviceDescriptor> getDeviceDescriptors() { return this.devDesc; }
+	public DescriptorsCollection getDeviceDescriptors() { return this.descriptorsCollection; }
 
 	public void createDeviceDescriptors(Collection<IDescriptor> descs) {
 			for (IDescriptor element : descs)
-				devDesc.add(DeviceDescriptor.DeviceDescriptorFactory.createDeviceDescriptor(element));
+				descriptorsCollection.add(DeviceDescriptor.DeviceDescriptorFactory.createDeviceDescriptor(element));
 	}
 	
 								

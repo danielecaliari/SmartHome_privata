@@ -1,18 +1,13 @@
 package domain;
 
-public class DeviceBuilder {
+public class DeviceFactory {
 	
 	private Device device;
 	
-	public DeviceBuilder(){
-		this.device = new Device();
+	public DeviceFactory(DeviceDescriptor dd){
+		this.device = new Device(dd);
 	}
 	
-	//Fluent Builder
-	public DeviceBuilder addChild(IDescriptor desc){
-		this.device.setDescriptor(desc);
-		return this;
-	}
 	
 	//Per Ogni dato member da aggiungere si fa OVERLOAD di questo metodo e si ritorna sempre this
 	

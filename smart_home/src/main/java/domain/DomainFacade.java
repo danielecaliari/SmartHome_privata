@@ -32,15 +32,17 @@ public class DomainFacade implements IDomainFacade {
 	}
 	
 	
-	public List<DeviceDescriptor> getDeviceDescriptors() { return this.home.getDeviceDescriptors(); }
+	public DescriptorsCollection getDeviceDescriptors() { return this.home.getDeviceDescriptors(); }
 	
 	
 	public void addDevice(Object id){
 		if(this.home.getDeviceDescriptors().contains(id)){
-			//System.out.println("COntains!");
-			DeviceBuilder dvb = new DeviceBuilder();
-			dvb.addChild(this.home.getDeviceDescriptors().get(0));
-			//this.home.addDevice(dvb.getDevice());
+			
+			//TODO eliminare dalla lista il descriptor trovato
+			
+			DeviceFactory df = new DeviceFactory(//descrittore ottenuto dalla ricerca);
+					
+			
 		}
 	}
 

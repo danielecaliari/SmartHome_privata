@@ -4,6 +4,4 @@ public interface ILowObject {
 	
 	<T> Object get(T id);
 	
-	
-
 }
