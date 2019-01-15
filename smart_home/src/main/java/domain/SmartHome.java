@@ -11,7 +11,7 @@ import java.util.Map;
 public class SmartHome {
 
 	/*Per ora ci serve solo la collezione di Device Descriptor*/
-	DescriptorsCollection descriptorsCollection;
+	private DescriptorsCollection descriptorsCollection;
 	Map<AbstractId,Device> devices;
 
 	
@@ -33,7 +33,7 @@ public class SmartHome {
 
 	public void createDeviceDescriptors(Collection<IDescriptor> descs) {
 			for (IDescriptor element : descs)
-				descriptorsCollection.add(DeviceDescriptor.DeviceDescriptorFactory.createDeviceDescriptor(element));
+				descriptorsCollection.addDeviceDescriptor(DeviceDescriptor.DeviceDescriptorFactory.createDeviceDescriptor(element));
 	}
 	
 								

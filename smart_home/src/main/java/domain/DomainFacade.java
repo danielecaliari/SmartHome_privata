@@ -35,14 +35,15 @@ public class DomainFacade implements IDomainFacade {
 	public DescriptorsCollection getDeviceDescriptors() { return this.home.getDeviceDescriptors(); }
 	
 	
-	public void addDevice(Object id){
-		if(this.home.getDeviceDescriptors().contains(id)){
+	public void addDevice(AbstractId id){
+		if(this.home.getDeviceDescriptors().containsDeviceDescriptor(id)){
 			
-			//TODO eliminare dalla lista il descriptor trovato
+			// elimino il deviceDescriptor corrispondente all'id
+			DeviceDescriptor deviceDescriptor = this.home.getDeviceDescriptors().searchDeviceDescriptor(id);
+			this.home.getDeviceDescriptors().removeDeviceDescriptor(id);
 			
-			DeviceFactory df = new DeviceFactory(//descrittore ottenuto dalla ricerca);
+			DeviceFactory df = new DeviceFactory(deviceDescriptor);
 					
-			
 		}
 	}
 

@@ -23,12 +23,11 @@ public class Main {
 	
 	//api.scanDevice();
 		
-	List<DeviceDescriptor> dd = new ArrayList<DeviceDescriptor>();
+	DescriptorsCollection dd = new DescriptorsCollection();
 	dd = api.getDeviceDescriptors();
 	System.out.println(dd.size());
 	
-	for(DeviceDescriptor ddd : dd)
-		System.out.println(ddd);
+	dd.print();
 	
 	//Collection<Device> devs = new ArrayList<Device>(api.getDevices());
 	//System.out.println(devs.size());

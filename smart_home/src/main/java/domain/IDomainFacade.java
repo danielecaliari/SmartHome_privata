@@ -9,6 +9,6 @@ public interface IDomainFacade {
 	//TODO Il tipo di ritorno va definito capendo cosa serve alla GUI
 	public void scanDevice() throws FileNotFoundException, IOException, ParseException, Exception;
 	
-	public void addDevice(Object id);
+	public void addDevice(AbstractId id);
 
 }
