@@ -1,10 +1,16 @@
 package domain;
 
+import java.util.Set;
+
 public interface IDescriptor {
 	
 	public AbstractId getId();
 	
-	public Object getDescription();
+	public Object lookForAParameter(String param);
 	
-	public String toString();
+	public Set<Tag> getDescriptorParameters();
+	
+	//public Object getDescription();
+	
+	//public String toString();
 }

@@ -1,41 +1,52 @@
 package domain;
 
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 public class DeviceDescriptor implements IDescriptor{
-	private DeviceId id;
-	private DeviceDescription description;
+	
+	Map<Tag,Object> descriptorElements = new HashMap<>();
 	
 	
-	private DeviceDescriptor (DeviceId id, DeviceDescription description) {
-		this.setId(id);
-		this.setDescription(description);
+	private DeviceDescriptor (DeviceId id) {
+		//this.setId(id);
 	}
 	
 	public DeviceDescriptor() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void addElement(Tag t, Object value){
+		this.descriptorElements.put(t, value);
+	}
+	
+	
 
 	/** SETTERS
 	 * @param id the id to set
-	 */
+	 
 	public void setId(DeviceId id) {
-		this.id = id;
+		//this.id = id;
+		this.descriptorElements.put(new Tag("UID"), id);
+		//System.out.println(this.descriptorElements.get(new Tag("UID")));
 	}
 
 	/**
 	 * @param description the description to set
-	 */
-	private void setDescription(DeviceDescription description) {
-		this.description = description;
+	 
+	private void setName(Object name) {
+		this.descriptorElements.put(new Tag("name"), name);
 	}
-
+*/
 	
 	/** GETTERS
 	 * @return the id
 	 */
 	public DeviceId getId() {
-		return id;
+		
+		return new DeviceId(this.lookForAParameter("UID").toString());
 	}
 	
 	
@@ -43,60 +54,54 @@ public class DeviceDescriptor implements IDescriptor{
 	/**
 	 * @return the description
 	 */
-	public DeviceDescription getDescription() {
-		return description;
+	public String getDeviceName() {
+		return this.lookForAParameter("name").toString();
 	}
 	
 	
-	
- @Override
-	public String toString() {
-		return "DeviceDescriptor [id=" + id + ", description=" + description + "]";
+
+	@Override
+	public Object lookForAParameter(String param) {
+		
+		//Con questo metodo come in LowObject cerchi una corrispondenza parziale
+		//COn le Espressioni regolari
+		Pattern p = Pattern.compile(param);
+		for(Tag t : this.descriptorElements.keySet())
+			   if(p.matcher(t.toString()).find())
+				   return this.descriptorElements.get(t);
+		return null;
 	}
 
 
+ public String toString(){
+	 return this.descriptorElements.toString();
+ }
+ 	
+ 	
+ 
 
 static class DeviceDescriptorFactory{
 			
 		public static DeviceDescriptor createDeviceDescriptor(IDescriptor lowObject)
 			{
-			DeviceDescriptor deviceDescriptor= new DeviceDescriptor(new DeviceId(lowObject.getId().toString()),
-					new DeviceDescription(lowObject.getDescription().toString()));
+			DeviceDescriptor deviceDescriptor = new DeviceDescriptor();
+			deviceDescriptor.initializeDescriptor(lowObject);
 			return deviceDescriptor;
 			}
 			
 		}
 
-
-
-@Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((id == null) ? 0 : id.hashCode());
-	return result;
-}
-
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	DeviceDescriptor other = (DeviceDescriptor) obj;
-	if (id == null) {
-		if (other.id != null)
-			return false;
-	} else if (!id.equals(other.id))
-		return false;
-	return true;
+public void initializeDescriptor(IDescriptor abstractDesc) {
+	Set<Tag> tags = abstractDesc.getDescriptorParameters();
+	for(Tag t : tags)
+		this.descriptorElements.put(t, abstractDesc.lookForAParameter(t.toString()));
 }
 
 
-public String getStringId() {
-	return this.id.toString();
+public Set<Tag> getDescriptorParameters() {
+	
+	return this.descriptorElements.keySet();
 }
+
 
 }

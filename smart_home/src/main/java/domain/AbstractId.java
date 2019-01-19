@@ -12,7 +12,7 @@ public abstract class AbstractId {
 
 	@Override
 	public String toString() {
-		return "AbstractId [id=" + id + "]";
+		return  id;
 	}
 
 
