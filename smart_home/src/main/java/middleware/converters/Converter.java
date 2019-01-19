@@ -31,6 +31,7 @@ public Collection<ILowObject> convertToLowObjectCollectionF(JSONObject jo,String
 	List<ILowObject> lowObjectCollection = new ArrayList<ILowObject>();  
     JSONArray ja = (JSONArray) jo.get("result");
     
+    
     LowObjectCreator creator = new LowObjectCreator();
     
     for (Object element : ja) {

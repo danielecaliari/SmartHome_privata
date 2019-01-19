@@ -67,6 +67,7 @@ public class MiddlewareFacade implements IMiddlewareFacade {
 			/*adapters.add*/ Collection<ICommand> test = (new FunctionAdapter(low).getCommands());
 			
 		}
+		
 		return adapters;
 		}
 	
