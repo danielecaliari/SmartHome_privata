@@ -2,7 +2,7 @@ package domain;
 
 public abstract class AbstractDevice implements IDevice {
 	
-	protected IDescriptor descriptor;
+	private IDescriptor descriptor;
 	
 
 	@Override
@@ -12,6 +12,10 @@ public abstract class AbstractDevice implements IDevice {
 	
 	public void setDescriptor(IDescriptor desc){
 		this.descriptor = desc;
+	}
+	
+	public IDescriptor getDescriptor(){
+		return this.descriptor;
 	}
 
 }

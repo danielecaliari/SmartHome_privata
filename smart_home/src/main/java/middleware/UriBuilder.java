@@ -2,17 +2,25 @@ package middleware;
 
 public class UriBuilder {
 	
-	private final static String baseUri = "http://localhost:8080/api/";
+	private static final String baseUri = "http://localhost:8080/api";
 	
 	private String uri;
 	
+	public UriBuilder(){
+		this.uri = "";
+	}
+	
 	public UriBuilder add(Object resource){
-		this.uri.concat(resource.toString());
+		this.uri += (resource.toString());
 		return this;
 	}
 	
 	public String getStringUri(){
-		return this.baseUri + uri;
+		return this.baseUri + this.uri;
+	}
+	
+	public void clear(){
+		this.uri = "";
 	}
 
 }

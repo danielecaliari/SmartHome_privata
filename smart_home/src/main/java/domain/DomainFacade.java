@@ -21,7 +21,6 @@ public class DomainFacade implements IDomainFacade {
 	public DomainFacade(){
 		this.middlewareFacade = new MiddlewareFacade();
 		this.home = SmartHome.getInstance();
-		
 	}
 	
 
@@ -35,18 +34,21 @@ public class DomainFacade implements IDomainFacade {
 	public List<DeviceDescriptor> getDeviceDescriptors() { return this.home.getDeviceDescriptors(); }
 	
 	
-	public void addDevice(Object id){
-		if(this.home.getDeviceDescriptors().contains(id)){
-			//System.out.println("COntains!");
-			DeviceBuilder dvb = new DeviceBuilder();
-			dvb.addChild(this.home.getDeviceDescriptors().get(0));
+	public void addDevice(Object devDesc) throws FileNotFoundException, IOException, ParseException{
+		if(this.home.getDeviceDescriptors().contains(devDesc)){
+			//int indx = this.getDeviceDescriptors()
+			System.out.println("COntains!");
+			DeviceFactory fact = new DeviceFactory();
+			//fact.addDeviceDescriptor(this.home.getDeviceDescriptors().);
+			//DeviceBuilder dvb = new DeviceBuilder();
+			//dvb.addChild(this.home.getDeviceDescriptors().get(3));
+			this.middlewareFacade.getADeviceFunctions(this.home.getDeviceDescriptors().get(2));
 			//this.home.addDevice(dvb.getDevice());
 		}
 	}
 
 
 	public Collection<Device> getDevices() {
-		// TODO Auto-generated method stub
 		return this.home.getDevices();
 	}
 

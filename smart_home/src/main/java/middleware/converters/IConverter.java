@@ -8,12 +8,10 @@ import java.util.Collection;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+import middleware.ILowObject;
+
 public interface IConverter {
 	
-	//JSONObject parseJSONFile(File f) throws FileNotFoundException, IOException, ParseException;
-	
-	//<T> Collection<T> convert(File f) throws FileNotFoundException, IOException, ParseException, ParseException;
-	
-	<T> T convert(File f) throws FileNotFoundException, IOException, ParseException;
+	Collection<ILowObject> convert(File f, String parameter) throws FileNotFoundException, IOException, ParseException;
 
 }

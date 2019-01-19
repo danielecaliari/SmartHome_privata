@@ -2,6 +2,8 @@ package domain;
 
 public class Device extends AbstractDevice {
 	
+	
+	
 	public void setDescriptor(IDescriptor desc) {
 		super.setDescriptor(desc);
 	}
@@ -9,7 +11,7 @@ public class Device extends AbstractDevice {
 	@Override
 	public IDescriptor getDescriptor() {
 		
-		return super.descriptor;
+		return super.getDescriptor();
 	}
 
 

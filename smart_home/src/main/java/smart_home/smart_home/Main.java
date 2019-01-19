@@ -30,6 +30,10 @@ public class Main {
 	
 	}
 	
+	api.addDevice(dd.get(3));
+	
+	
+	
 	//Collection<Device> devs = new ArrayList<Device>(api.getDevices());
 	//System.out.println(devs.size());
 	//System.out.println(devs);
