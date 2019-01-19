@@ -12,7 +12,7 @@ import org.json.simple.parser.ParseException;
 import adapters.DescriptorAdapter;
 import domain.IDescriptor;
 import middleware.converters.IConverter;
-import middleware.converters.LowDescriptorConverter;
+import middleware.converters.Converter;
 
 
 
@@ -28,7 +28,7 @@ public class MiddlewareFacade implements IMiddlewareFacade {
 		RestClient client = new RestClient();
 		File jsonFile = client.get();
 		this.cache.isInCache(jsonFile);
-		IConverter converter = new LowDescriptorConverter();
+		IConverter converter = new Converter();
 		Collection<ILowObject> lowDesc = converter.convert(jsonFile);
 		
 		return this.getDescriptors(lowDesc);

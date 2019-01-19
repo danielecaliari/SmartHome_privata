@@ -7,5 +7,9 @@ public class DeviceId extends AbstractId {
 	}
 	
 	
+	public String toString(){
+		return super.toString();
+	}
+	
 
 }

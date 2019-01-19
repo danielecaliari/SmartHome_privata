@@ -26,7 +26,7 @@ public class DomainFacade implements IDomainFacade {
 	
 
 	@Override
-	public void scanDevice() throws FileNotFoundException, IOException, ParseException, Exception {	
+	public void scanDevices() throws FileNotFoundException, IOException, ParseException, Exception {	
 		Collection<IDescriptor> descs = middlewareFacade.getDevices();
 		this.home.createDeviceDescriptors(descs);
 	}
