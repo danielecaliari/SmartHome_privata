@@ -38,8 +38,8 @@ public class LowObjectCreator {
 	
 		    for(Object key : this.toAdapt.keySet()){
 		    	if(pattern.matcher(new String(key.toString())).find()){
-		    		//System.out.println(key.toString());
-		    		//System.out.println(this.toAdapt.get(key));
+		    		System.out.println(key.toString());
+		    		System.out.println(this.toAdapt.get(key));
 		    		res.add(key.toString(), this.toAdapt.get(key));
 		    	}
 		    }

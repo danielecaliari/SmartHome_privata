@@ -4,7 +4,7 @@ import java.util.Set;
 
 public interface ILowObject {
 	
-	<T> Object get(T id);
+	<T> Object gett(T id);
 	
 	Set<String> getKeys();
 

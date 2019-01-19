@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class LowObject implements ILowObject {
+import org.json.simple.JSONObject;
+
+public class LowObject extends JSONObject implements ILowObject {
 	
 	private Map<String,Object> objs;
 	
@@ -15,7 +17,8 @@ public class LowObject implements ILowObject {
 	
 
 	@Override
-	public <T> Object get(T id) {
+	public <T> Object gett(T id) {
+		//System.out.println(this.objs.get(this.lookForAKeyPattern((String) id)));
 		
 		return this.objs.get(this.lookForAKeyPattern((String) id));
 	}
@@ -38,8 +41,10 @@ public class LowObject implements ILowObject {
 	private String  lookForAKeyPattern(String pattern){
 		 //Pattern di riconoscimento di Regex
 		   Pattern p = Pattern.compile(pattern);
+		  // System.out.println(pattern);
 		   
 		   for(String key : this.objs.keySet()){
+			   //System.out.println(key);
 			   if(p.matcher(key).find())
 				   return key;
 		   }
