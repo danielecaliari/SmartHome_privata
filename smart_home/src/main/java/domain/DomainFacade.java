@@ -2,6 +2,7 @@ package domain;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -21,7 +22,6 @@ public class DomainFacade implements IDomainFacade {
 	public DomainFacade(){
 		this.middlewareFacade = new MiddlewareFacade();
 		this.home = SmartHome.getInstance();
-		
 	}
 	
 
@@ -35,18 +35,26 @@ public class DomainFacade implements IDomainFacade {
 	public List<DeviceDescriptor> getDeviceDescriptors() { return this.home.getDeviceDescriptors(); }
 	
 	
-	public void addDevice(Object id){
-		if(this.home.getDeviceDescriptors().contains(id)){
-			//System.out.println("COntains!");
-			DeviceBuilder dvb = new DeviceBuilder();
-			dvb.addChild(this.home.getDeviceDescriptors().get(0));
+	public void addDevice(Object devDesc) throws FileNotFoundException, IOException, ParseException{
+		if(this.home.getDeviceDescriptors().contains(devDesc)){
+			//int indx = this.getDeviceDescriptors()
+			System.out.println("COntains!");
+			DeviceFactory fact = new DeviceFactory();
+			//fact.addDeviceDescriptor(this.home.getDeviceDescriptors().);
+			//DeviceBuilder dvb = new DeviceBuilder();
+			//dvb.addChild(this.home.getDeviceDescriptors().get(3));
+			Collection<IFunction> ans = 
+					 this.middlewareFacade.getADeviceFunctions(this.home.getDeviceDescriptors().get(2));
+			for(IFunction f : ans){
+				System.out.println("FUNCTION ID : " + f.getId());
+				System.out.println("COMMAND: " + f.getCommands() );
+			}
 			//this.home.addDevice(dvb.getDevice());
 		}
 	}
 
 
 	public Collection<Device> getDevices() {
-		// TODO Auto-generated method stub
 		return this.home.getDevices();
 	}
 

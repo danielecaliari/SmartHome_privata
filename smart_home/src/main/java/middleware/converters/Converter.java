@@ -14,35 +14,34 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 
-import middleware.ILowObject;
-
-
 public class Converter implements IConverter {
 	
-	
 	@Override
-	 public Collection<? extends ILowObject> convert(File f) throws FileNotFoundException, IOException, ParseException{
-		return this.convertToLowObjectCollection(new Parser().parseJSONFile(f));
+	public JSONArray convert(File f) throws FileNotFoundException, IOException, ParseException{
+		JSONObject obj = (new Parser().parseJSONFile(f));
+		JSONArray ja = (JSONArray) obj.get("result");
+		return ja;
 	 }
 	
+	
+/*
+public Collection<ILowObject> convertTo(JSONObject jo,String parameter) throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException {
+		
+	  
+    JSONArray ja = (JSONArray) jo.get("result");
+    
+    
+    LowObjectCreator creator = new LowObjectCreator();
+    
+    for (Object element : ja) {
+    	creator.setToAdapt((JSONObject) element); 	
+        lowObjectCollection.add(creator.convertToLowObject(parameter));
+    }
+    return lowObjectCollection;
+    
+}
 
-public Collection<? extends ILowObject> convertToLowObjectCollection(JSONObject jo) throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException {
- 		
-		List<ILowObject> lowObjectDescriptorCollection = new ArrayList<ILowObject>();  
-        JSONArray ja = (JSONArray) jo.get("result");
-        
-        LowObjectCreator creator = new LowObjectCreator();
-        
-        for (Object element : ja) {
-        	creator.setToAdapt((JSONObject) element); 	
-            lowObjectDescriptorCollection.add(creator.convertToLowObject());
-        }
-        return lowObjectDescriptorCollection;
-        
-	}
-
-
-
+*/
 	
 
 
