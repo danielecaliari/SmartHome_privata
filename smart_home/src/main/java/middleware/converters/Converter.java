@@ -14,21 +14,20 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 
-import middleware.ILowObject;
-
-
 public class Converter implements IConverter {
 	
 	@Override
-	public Collection<ILowObject> convert(File f,String p) throws FileNotFoundException, IOException, ParseException{
-		return this.convertToLowObjectCollectionF(new Parser().parseJSONFile(f), p);
+	public JSONArray convert(File f) throws FileNotFoundException, IOException, ParseException{
+		JSONObject obj = (new Parser().parseJSONFile(f));
+		JSONArray ja = (JSONArray) obj.get("result");
+		return ja;
 	 }
 	
 	
-
-public Collection<ILowObject> convertToLowObjectCollectionF(JSONObject jo,String parameter) throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException {
+/*
+public Collection<ILowObject> convertTo(JSONObject jo,String parameter) throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException {
 		
-	List<ILowObject> lowObjectCollection = new ArrayList<ILowObject>();  
+	  
     JSONArray ja = (JSONArray) jo.get("result");
     
     
@@ -42,7 +41,7 @@ public Collection<ILowObject> convertToLowObjectCollectionF(JSONObject jo,String
     
 }
 
-
+*/
 	
 
 

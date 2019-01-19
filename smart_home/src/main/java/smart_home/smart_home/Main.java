@@ -24,8 +24,8 @@ public class Main {
 	for(DeviceDescriptor ddd : dd){
 		System.out.println(ddd.getId());
 		System.out.println(ddd.getDeviceName());
-		System.out.println(ddd.lookForAParameter("stat").toString());
-		//System.out.println(ddd.getDescriptorParameters());
+		//System.out.println(ddd.lookForAParameter("stat").toString());
+		System.out.println(ddd.getDescriptorParameters());
 		//System.out.println(ddd);
 	
 	}
